@@ -3,7 +3,6 @@ package com.example;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,29 +11,12 @@ import javax.swing.*;
 
 public class Arkanoid extends JFrame implements KeyListener {
 
-    /* Константы */
-    public static final int SCREEN_WIDTH = 800; //нижняя граница
-    public static final int SCREEN_HEIGHT = 600; //верхняя граница
-    public static final double BLOCK_WIDTH = 60.0; //ширина блока
-    public static final double BLOCK_HEIGHT = 20.0; //высота блока
-    public static final int COUNT_BLOCKS_X = 11; //количество блоков в строке
-    public static final int COUNT_BLOCKS_Y = 4; //количество блоков в столбце
-    public static final double PADDLE_WIDTH = 80.0; //ширина платформы
-    public static final double PADDLE_HEIGHT = 20.0; //высота платформы
-    public static final double PADDLE_VELOCITY = 0.6; //скорость движения платформы
-    public static final double BALL_RADIUS = 10.0; //радиус шарика
-    public static final double BALL_VELOCITY = 0.3; //скорость движения шарика
-    public static final int PLAYER_LIVES = 5; //количество жизней
-    public static final double FT_SLICE = 1.0; //ФУТОВЫЙ КУСОК
-    public static final double FT_STEP = 1.0; //ФУТОВЫЙ ШАГ
-    private static final String FONT = "Courier New"; //шрифт текста
+    private static final String FONT = "Courier New";
 
-    /* Переменные игры */
+    private boolean tryAgain = false;
 
-    private boolean tryAgain = false; //поцесс идет заново
-
-    private final Paddle paddle = new Paddle(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 50); // начальное положение платформы
-    private final Ball ball = new Ball(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2); //начальное положения мяча
+    private final Paddle paddle = new Paddle(Const.SCREEN_WIDTH / 2, Const.SCREEN_HEIGHT - 50); // начальное положение платформы
+    private final Ball ball = new Ball(Const.SCREEN_WIDTH / 2, Const.SCREEN_HEIGHT / 2); //начальное положения мяча
     private static final List<Brick> bricks = new ArrayList<>();
     private final ScoreBoard scoreboard = new ScoreBoard(FONT);
 
@@ -45,13 +27,14 @@ public class Arkanoid extends JFrame implements KeyListener {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false); //запрещает изменять размер окна
-        setSize(SCREEN_WIDTH, SCREEN_HEIGHT); //размер окна
+        setSize(Const.SCREEN_WIDTH, Const.SCREEN_HEIGHT); //размер окна
         setVisible(true); //видимость
         addKeyListener(this); //ключевой слушатель
         setLocationRelativeTo(null); //расположение по центру
         setTitle("Arkanoid"); //Заголовок
 
         createBufferStrategy(2); //БуфферСтратегия обновления окна
+
         initializeBricks(bricks); //инициализация "кирпичей"
 
     }
@@ -59,25 +42,25 @@ public class Arkanoid extends JFrame implements KeyListener {
 
     public static void main(String[] args) {
 
-        new Arkanoid().run(bricks);
+        new Arkanoid().run();
     }
-    //(полиморфизм: использование абстрактного типа GameObject mA, GameObject mB)
-    public boolean isIntersecting(GameObject mA, GameObject mB) {//пересечение
+
+    public boolean isIntersecting(GameObject mA, GameObject mB) {
         return !(mA.right() >= mB.left()) || !(mA.left() <= mB.right())
                 || !(mA.bottom() >= mB.top()) || !(mA.top() <= mB.bottom());
     }
-
-    public void testCollision(Paddle mPaddle, Ball mBall) {//Проверка на столкновение платформа - шар
+    //Проверка на столкновение платформа - шар
+    private void testCollision(Paddle mPaddle, Ball mBall) {
         if (isIntersecting(mPaddle, mBall)) //если платфома и шар пересекаются
             return;
-        mBall.velocityY = -BALL_VELOCITY;
+        mBall.velocityY = -Const.BALL_VELOCITY;
         if (mBall.x < mPaddle.x)
-            mBall.velocityX = -BALL_VELOCITY;
+            mBall.velocityX = -Const.BALL_VELOCITY;
         else
-            mBall.velocityX = BALL_VELOCITY;
+            mBall.velocityX = Const.BALL_VELOCITY;
     }
-
-    public void testCollision(Brick mBrick, Ball mBall) {// Проверка на столкновение для "кирпич" - шар
+    // Проверка на столкновение для "кирпич" - шар
+    private void testCollision(Brick mBrick, Ball mBall) {
         if (isIntersecting(mBrick, mBall)) return;
 
         mBrick.destroyed = true; //кирпич разбит
@@ -95,55 +78,55 @@ public class Arkanoid extends JFrame implements KeyListener {
         double minOverlapY = ballFromTop ? overlapTop : overlapBottom;
 
         if (minOverlapX < minOverlapY) {
-            mBall.velocityX = ballFromLeft ? -BALL_VELOCITY : BALL_VELOCITY;
+            mBall.velocityX = ballFromLeft ? -Const.BALL_VELOCITY : Const.BALL_VELOCITY;
         } else {
-            mBall.velocityY = ballFromTop ? -BALL_VELOCITY : BALL_VELOCITY;
+            mBall.velocityY = ballFromTop ? -Const.BALL_VELOCITY : Const.BALL_VELOCITY;
         }
     }
+    //инициализируем кирпичи
+    private static void initializeBricks(List<Brick> bricks) {
+        // убрать старые кирпичи
+        bricks.clear();
 
-    public static void initializeBricks(List<Brick> bricks) {//инициализируем кирпичи
-
-        bricks.clear();// убрать старые кирпичи
-
-        for (int iX = 0; iX < COUNT_BLOCKS_X; ++iX) {
-            for (int iY = 0; iY < COUNT_BLOCKS_Y; ++iY) {
-                bricks.add(new Brick((iX + 1) * (BLOCK_WIDTH + 3) + 22,
-                        (iY + 2) * (BLOCK_HEIGHT + 3) + 40));
+        for (int iX = 0; iX < Const.COUNT_BLOCKS_X; ++iX) {
+            for (int iY = 0; iY < Const.COUNT_BLOCKS_Y; ++iY) {
+                bricks.add(new Brick((iX + 1) * (Const.BLOCK_WIDTH + 3) + 22,
+                        (iY + 2) * (Const.BLOCK_HEIGHT + 3) + 40));
             }
         }
     }
 
-    public void run(List<Brick> bricks) {
+    private void run() {
         BufferStrategy bf = this.getBufferStrategy();
         Graphics g = bf.getDrawGraphics();
         g.setColor(Color.black);
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        boolean running = true;
+        //boolean running = true;
 
-        while (running) {
+        while (true) {
 
             long time1 = System.currentTimeMillis();
 
             if (!scoreboard.gameOver && !scoreboard.win) {
                 tryAgain = false;
                 update();
-                drawScene(ball, bricks, scoreboard);
+                drawScene(ball, scoreboard);
 
 
 
             } else {
                 if (tryAgain) {
                     tryAgain = false;
-                    initializeBricks(bricks);
-                    scoreboard.lives = PLAYER_LIVES;
+                    initializeBricks(Arkanoid.bricks);
+                    scoreboard.lives = Const.PLAYER_LIVES;
                     scoreboard.score = 0;
                     scoreboard.win = false;
                     scoreboard.gameOver = false;
                     scoreboard.updateScoreboard();
-                    ball.x = SCREEN_WIDTH / 2;
-                    ball.y = SCREEN_HEIGHT / 2;
-                    paddle.x = SCREEN_WIDTH / 2;
+                    ball.x = Const.SCREEN_WIDTH / 2;
+                    ball.y = Const.SCREEN_HEIGHT / 2;
+                    paddle.x = Const.SCREEN_WIDTH / 2;
                 }
             }
 
@@ -155,7 +138,7 @@ public class Arkanoid extends JFrame implements KeyListener {
 
         }
 
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        //this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 
     }
     //обновление
@@ -163,7 +146,7 @@ public class Arkanoid extends JFrame implements KeyListener {
 
         currentSlide += lastFt;
 
-        for (; currentSlide >= FT_SLICE; currentSlide -= FT_SLICE) { //...
+        for (; currentSlide >= Const.FT_SLICE; currentSlide -= Const.FT_SLICE) { //...
 
             ball.update(scoreboard, paddle); //вызов метода обновления шара
             paddle.update(); //вызов метода обновления платформы
@@ -182,7 +165,7 @@ public class Arkanoid extends JFrame implements KeyListener {
     }
 
     // код отрисовки сцены.
-    private void drawScene(Ball ball, List<Brick> bricks, ScoreBoard scoreboard) {
+    private void drawScene(Ball ball, ScoreBoard scoreboard) {
 
         BufferStrategy bf = this.getBufferStrategy();
         Graphics g = null;
@@ -190,14 +173,13 @@ public class Arkanoid extends JFrame implements KeyListener {
         try {
 
             g = bf.getDrawGraphics();
-            //g.setColor(Color.CYAN);
             g.fillRect(0, 0, getWidth(), getHeight());
             Image img = new ImageIcon("image/background.jpg").getImage(); //загрузка изображения
             g.drawImage(img, 0, 0, null); //отображение
 
             ball.draw(g); //вызов метода отрисовки мяча
             paddle.draw(g); //вызов метода отрисовки платформы
-            for (Brick brick : bricks) {
+            for (Brick brick : Arkanoid.bricks) {
                 brick.draw(g);
             }
             scoreboard.draw(g); //вызов метода отображения (отрисовки) счета

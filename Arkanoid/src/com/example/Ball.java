@@ -1,21 +1,14 @@
 package com.example;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.Image;
-
-import static com.example.Arkanoid.*;
-
-
-//мяч
 
 public class Ball extends GameObject {
 
     public double x;
     public double y;
-    private final double radius = BALL_RADIUS;
-    public double velocityX = BALL_VELOCITY;
-    public double velocityY = BALL_VELOCITY;
+    private final double radius = Const.BALL_RADIUS;
+    public double velocityX = Const.BALL_VELOCITY;
+    public double velocityY = Const.BALL_VELOCITY;
     //конструктор с параметрами х, у
     public Ball(int x, int y) {
         this.x = x;
@@ -28,20 +21,19 @@ public class Ball extends GameObject {
         g.fillOval((int) left(), (int) top(), (int) radius * 2, (int) radius * 2);
 
     }
-
     //обновление
     public void update(ScoreBoard scoreBoard, Paddle paddle) {
-        x += velocityX * FT_STEP;
-        y += velocityY * FT_STEP;
+        x += velocityX * Const.FT_STEP;
+        y += velocityY * Const.FT_STEP;
 
         if (left() < 0) //если граница мяча дальше границы окна
-            velocityX = BALL_VELOCITY; //мяч отталкичается от левой границы
-        else if (right() > SCREEN_WIDTH) //иначе, если граница мяча дальше границы окна
-            velocityX = -BALL_VELOCITY; //мяч отталкивается от правой границы
+            velocityX = Const.BALL_VELOCITY; //мяч отталкичается от левой границы
+        else if (right() > Const.SCREEN_WIDTH) //иначе, если граница мяча дальше границы окна
+            velocityX = -Const.BALL_VELOCITY; //мяч отталкивается от правой границы
         if (top() < 0) { //если граница мяча меньше нуля
-            velocityY = BALL_VELOCITY; //мяч отталкивается
-        } else if (bottom() > SCREEN_HEIGHT) { //иначе, граница мяча ниже границы окна
-            velocityY = -BALL_VELOCITY;
+            velocityY = Const.BALL_VELOCITY; //мяч отталкивается
+        } else if (bottom() > Const.SCREEN_HEIGHT) { //иначе, граница мяча ниже границы окна
+            velocityY = -Const.BALL_VELOCITY;
             x = paddle.x;
             y = paddle.y - 50;
             scoreBoard.die(); //мяч умирает
@@ -49,21 +41,25 @@ public class Ball extends GameObject {
 
     }
     //переопределение метода родительского класса
+    @Override
     public double left() {
 
         return x - radius;
     }
     //переопределение метода родительского класса
+    @Override
     public double right() {
 
         return x + radius;
     }
     //переопределение метода родительского класса
+    @Override
     public double top() {
 
         return y - radius;
     }
     //переопределение метода родительского класса
+    @Override
     public double bottom() {
 
         return y + radius;
