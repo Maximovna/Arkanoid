@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fd0902ff-759e-4398-ad7a-8634b0336c46" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1cktM2qpQJY7YAqEIP4cFj2NkBH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ol\Desktop\Курсовая работа\Arkanoid\image" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ol\Desktop\Курсовая работа\Arkanoid\image" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Arkanoid" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.Arkanoid" />
+      <module name="Arkanoid" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Arkanoid" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="499" y="179" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1591088795372">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="499" y="179" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.864/-1920.-260.1920.1080@0.0.1536.864" timestamp="1591088795372" />
+    <state x="165" y="170" key="FileChooserDialogImpl" timestamp="1591198091863">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="165" y="170" key="FileChooserDialogImpl/0.0.1536.864/-1920.-260.1920.1080@0.0.1536.864" timestamp="1591198091863" />
+    <state width="734" height="40" key="GridCell.Tab.0.bottom" timestamp="1591322905398">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="734" height="40" key="GridCell.Tab.0.bottom/0.0.1536.864/-1920.-260.1920.1080@0.0.1536.864" timestamp="1591322905398" />
+    <state width="1515" height="47" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1591166100258" />
+    <state width="734" height="40" key="GridCell.Tab.0.center" timestamp="1591322905398">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="734" height="40" key="GridCell.Tab.0.center/0.0.1536.864/-1920.-260.1920.1080@0.0.1536.864" timestamp="1591322905398" />
+    <state width="1515" height="47" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1591166100258" />
+    <state width="734" height="40" key="GridCell.Tab.0.left" timestamp="1591322905398">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="734" height="40" key="GridCell.Tab.0.left/0.0.1536.864/-1920.-260.1920.1080@0.0.1536.864" timestamp="1591322905398" />
+    <state width="1515" height="47" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1591166100258" />
+    <state width="734" height="40" key="GridCell.Tab.0.right" timestamp="1591322905398">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="734" height="40" key="GridCell.Tab.0.right/0.0.1536.864/-1920.-260.1920.1080@0.0.1536.864" timestamp="1591322905398" />
+    <state width="1515" height="47" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1591166100258" />
+    <state x="0" y="59" key="SettingsEditor" timestamp="1591105189286">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="0" y="59" key="SettingsEditor/0.0.1536.864/-1920.-260.1920.1080@0.0.1536.864" timestamp="1591105189286" />
+    <state x="0" y="24" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1591104350858">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="0" y="24" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.864/-1920.-260.1920.1080@0.0.1536.864" timestamp="1591104350858" />
+    <state x="418" y="54" key="new project wizard" timestamp="1591198180194">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="418" y="54" key="new project wizard/0.0.1536.864/-1920.-260.1920.1080@0.0.1536.864" timestamp="1591198180194" />
+    <state x="562" y="179" key="refactoring.ChangeSignatureDialog" timestamp="1591097738844">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="562" y="179" key="refactoring.ChangeSignatureDialog/0.0.1536.864/-1920.-260.1920.1080@0.0.1536.864" timestamp="1591097738844" />
+  </component>
+</project>
